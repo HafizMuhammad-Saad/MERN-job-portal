@@ -143,6 +143,17 @@ exports.getJobById = async (req, res) => {
 //@desc update a job employer only
 exports.updateJob = async (req, res) => {
     try {
+        const job = await job.findById(req.params.id);
+        if (!job) return res.status(404).json({ message: "Job not found" });
+
+        if (job.company.toString() !== req.user._id) {
+            return res.status(403).json({ message: "User not authorized" });    
+
+        }
+
+        Object.assign(job, req.body);
+        const updatedJob = await job.save();
+        res.json(updatedJob);
 
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -152,7 +163,16 @@ exports.updateJob = async (req, res) => {
 //@desc delete a job employer only
 exports.deleteJob = async (req, res) => {
     try {
+        const job = await job.findById(req.params.id);
+        if (!job) return res.status(404).json({ message: "Job not found" });
 
+        if (job.company.toString() !== req.user._id.toString()) {
+            return res.status(403).json({ message: "User not authorized" });    
+
+        }
+
+        await job.deleteOne();
+        res.json({ message: "Job Deleted Successfully" });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
@@ -161,7 +181,17 @@ exports.deleteJob = async (req, res) => {
 //@desc  Toggle clos Status for a job (Employer Only)
 exports.toggleCloseJob = async (req, res) => {
     try {
+        const job = await job.findById(req.params.id);
+        if (!job) return res.status(404).json({ message: "Job not found" });
 
+        if (job.company.toString() !== req.user._id.toString()) {
+            return res.status(403).json({ message: "User not authorized" });    
+
+        }
+
+        job.isClosed = !job.isClosed;
+        await job.save();
+        res.json({ message: "Job Marked as Closed" });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
