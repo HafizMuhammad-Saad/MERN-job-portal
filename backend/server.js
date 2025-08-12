@@ -8,6 +8,7 @@ const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
 const jobRoutes = require('./routes/jobRoutes');
 const applicationRoutes = require('./routes/applicationRoutes');
+const savedJobRoutes = require('./routes/savedJobRoutes');
 
 const app = express();
 
@@ -29,6 +30,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/jobs", jobRoutes)
 app.use("/api/applications", applicationRoutes)
+app.use("/api/save-jobs", savedJobRoutes);
 
 //save uploads folder
 app.use("uploads", express.static(path.join(__dirname, "uploads"), {}));
