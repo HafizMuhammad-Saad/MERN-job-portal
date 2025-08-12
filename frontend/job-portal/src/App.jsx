@@ -19,11 +19,12 @@ import ManageJobs from './pages/Employer/ManageJobs';
 import EmployerProfilePage from './pages/Employer/EmployerProfilePage';
 import ApplicationViewer from './pages/Employer/ApplicationViewer';
 import ProtectedRoute from './routes/ProtectedRoute';
+import { AuthProvider } from './context/AuthContext';
 
 function App() {
 
   return (
-    <div>
+    <AuthProvider>
       <Router>
         <Routes>
           {/* Public Routes */}
@@ -62,7 +63,7 @@ function App() {
           }
         }}
       />
-    </div>
+    </AuthProvider>
   )
 }
 

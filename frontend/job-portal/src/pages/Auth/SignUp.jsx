@@ -1,10 +1,17 @@
 import React, { useState } from 'react'
+// eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion'
 import {User, Mail, Lock, Eye, Upload, EyeOff, Loader, AlertCircle, CheckCircle, UserCheck, Building2} from 'lucide-react'
 import { validateAvatar, validateEmail, validatePassword } from '../../utils/helper';
+import uploadImage from '../../utils/uploadImage';
+import axiosInstance from '../../utils/axiosInstance';
+import { API_PATHS } from '../../utils/apiPaths';
+import { useAuth } from '../../context/AuthContext';
 
 
 const SignUp = () => {
+
+  const {login} = useAuth()
 
     const [formData, setFormData] = useState({
         fullName: '',
@@ -126,7 +133,38 @@ const SignUp = () => {
         }));
 
         try {
-            's'
+            let avatarUrl = "";
+
+            if (formData.avatar) {
+              const imgUploadRes = await uploadImage(formData.avatar);
+              avatarUrl = imgUploadRes.imageUrl || "";
+            }
+
+            const response = await axiosInstance.post(API_PATHS.AUTH.REGISTER, {
+              name: formData.fullName,
+              email: formData.email,
+              password: formData.password,
+              role: formData.role,
+              avatar: avatarUrl || "",
+            });
+
+            setFormState(prev => ({
+                ...prev,
+                loading: false,
+                success: true,
+                errors: {},
+            }));
+
+            const { token } = response.data;
+
+            if (token) {
+              login(response.data, token);
+
+              // redirect based on role
+              setTimeout(() => {
+                window.location.href = formData.role === "employer" ? "/employer-dashboard" : "/find-jobs";
+              }, 2000);
+            }
         } catch (error) {
             console.log(error);
 

@@ -17,4 +17,7 @@
     background-color: #f7fafe;
     overflow-x: hidden;
   }
+  button {
+    cursor: pointer;
+  }
 }

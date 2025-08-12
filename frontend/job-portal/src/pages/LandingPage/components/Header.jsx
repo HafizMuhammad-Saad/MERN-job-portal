@@ -1,14 +1,13 @@
 import React from 'react'
+// eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion'
 import { Briefcase } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../../../context/AuthContext'
 
 const Header = () => {
-    const isAuthenticated = true;
-    const user = {
-        fullName: 'John Doe',
-        role: 'employer'
-      }
+    
+      const {user, isAuthenticated}  = useAuth()
   const navigate = useNavigate()
 
   return (

@@ -11,9 +11,12 @@ import {
     CheckCircle
 } from 'lucide-react'
 import { validateEmail, validatePassword } from '../../utils/helper';
+import axiosInstance from '../../utils/axiosInstance';
+import { API_PATHS } from '../../utils/apiPaths';
+import { useAuth } from '../../context/AuthContext';
 
 const Login = () => {
-
+  const { login } = useAuth()
     const [formData, setFormData] = useState({
         email: '',
         password: '',
@@ -70,6 +73,35 @@ const Login = () => {
 
         try {
             // Login API integration
+            const response = await axiosInstance.post(API_PATHS.AUTH.LOGIN, {
+              email: formData.email,
+              password: formData.password,
+              rememberMe: formData.rememberMe
+            });
+
+            setFormState(prev => ({
+                ...prev,
+                loading: false,
+                success: true,
+                errors: {}
+            }));
+
+            const {token , role} = response.data;
+
+            if (token) {
+              login(response.data, token);
+              // redirect based on role
+              setTimeout(() => {
+                window.location.href = role === "employer" ? "/employer-dashboard" : "/find-jobs";
+              }, 2000);
+            }
+            // redirect based on user role
+            setTimeout(() => {
+              const redirectPath = role === "employer" ? "/employer-dashboard" : "/find-jobs";
+              window.location.href = redirectPath;
+            }, 1500);
+
+
         } catch (error) {
             setFormState(prev => ({
                 ...prev,
@@ -83,19 +115,40 @@ const Login = () => {
 
     if (formState.success) {
         return (
-            <div className="flex items-center justify-center h-screen">
-                <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className=''>
-                    <CheckCircle className=''/>
-                    <h2 className="text-2xl font-bold text">Welcome Back!</h2>
-                    <p className="">
-                        You have been successfully logged in</p>    
-                        <div className="animate-spin inline-block w-8 h-8 border-[3px] border-current border-t-transparent text-blue-600 rounded-full" />
-                        <p className="">Redirecting to your Dashboard...</p>
-                </motion.div>
-            </div>
+            <div className="flex items-center justify-center h-screen bg-gray-50">
+  <motion.div
+    initial={{ opacity: 0, scale: 0.9 }}
+    animate={{ opacity: 1, scale: 1 }}
+    transition={{ duration: 0.5 }}
+    className="text-center p-8 max-w-md w-full"
+  >
+    <motion.div
+      initial={{ scale: 0 }}
+      animate={{ scale: 1 }}
+      transition={{ delay: 0.2, type: "spring" }}
+      className="flex justify-center mb-6"
+    >
+      <CheckCircle className="w-16 h-16 text-green-500" />
+    </motion.div>
+    
+    <h2 className="text-3xl font-bold text-gray-800 mb-2">Welcome Back!</h2>
+    <p className="text-gray-600 mb-8">You have been successfully logged in</p>
+    
+    <div className="flex flex-col items-center space-y-4">
+      <div className="animate-spin inline-block w-8 h-8 border-[3px] border-current border-t-transparent text-blue-600 rounded-full" />
+      <p className="text-gray-500 text-sm">Redirecting to your Dashboard...</p>
+    </div>
+    
+    <motion.div 
+      initial={{ width: 0 }}
+      animate={{ width: "100%" }}
+      transition={{ delay: 0.5, duration: 2 }}
+      className="mt-8 h-1 bg-blue-100 rounded-full overflow-hidden"
+    >
+      <div className="h-full bg-blue-500 animate-pulse"></div>
+    </motion.div>
+  </motion.div>
+</div>
         )
     }
 
@@ -197,22 +250,22 @@ const Login = () => {
        <button
        type='submit'
        disabled={formState.loading}
-       className=''>
+       className='w-full bg-gradient-to-r from-purple-500 to-blue-700 hover:from-blue-700 to-purple-900 text-white font-bold py-2 px-4 rounded disabled:opacity-50 transition-all'>
         {formState.loading ? (
             <>
-            <Loader className='' />
-            <span className="">Signing In...</span>
+            <Loader className='mr-2' />
+            <span className="text-sm">Signing In...</span>
             </>
         ) : (
-            <span className="">Sign In</span>
+            <span className="text-sm">Sign In</span>
         )}
        </button>
 
        {/* Sign UP link */}
-       <div className="">
-        <p className="">
+       <div className="mt-4 text-center">
+        <p className="text-gray-600 text-sm">
             Don't have an account?{' '}
-            <a href="/signup" className=''>
+            <a href="/signup" className='text-blue-500 hover:text-blue-700 font-bold transition-all'>
             Create one here</a>
         </p>
        </div>
