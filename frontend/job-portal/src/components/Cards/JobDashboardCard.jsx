@@ -30,7 +30,7 @@ const JobDashboardCard = ({job}) => {
           : "bg-green-100 text-green-700"
       }`}
     >
-      {job.isClosed ? "Closed" : "Open"}
+      {job.isClosed ? "Closed" : "Active"}
     </span>
   </div>
 </div>

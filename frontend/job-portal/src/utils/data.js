@@ -86,8 +86,8 @@ export const JOB_TYPES = [
     {value: "Full-time", label: "Full-time"},
     {value: "Part-time", label: "Part-time"},
     {value: "Contract", label: "Contract"},
-    {value: "Temporary", label: "Temporary"},
     {value: "Internship", label: "Internship"},
+    {value: "Remote", label: "Remote"},
 ]
 
 export const SALARY_RANGES = [
