@@ -4,7 +4,7 @@ const Job = require("../models/Job");
 //@ desc  Apply to a job
 exports.applyToJob = async (req, res) => {
   try {
-    if (req.user.role !== "jobseeker") return res.status(403).json({ message: "Only seekers can apply to jobs" });
+    if (req.user.role !== "jobseeker") return res.status(403).json({ message: "Only jobseekers can apply to jobs" });
 
     const existing = await Application.findOne({ job: req.params.jobId, applicant: req.user._id });
 
@@ -39,7 +39,7 @@ exports.getApplicationsForJob = async (req, res) => {
 
     if (!job || job.company.toString() !== req.user._id.toString()) return res.status(403).json({ message: "User not authorized to view this applications" });
     
-    const applications = await Application.find({ job: req.params.jobId }).populate("job", "title location type").populate("applicant", "name email avatar resume");
+    const applications = await Application.find({ job: req.params.jobId }).populate("job", "title location category type").populate("applicant", "name email avatar resume");
 
     res.json(applications);
   } catch (error) {

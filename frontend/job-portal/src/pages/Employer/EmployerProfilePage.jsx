@@ -1,51 +1,73 @@
-import React from 'react'
+import { useState } from 'react'
+import { Building2, Mail, Edit3 } from 'lucide-react'
+import { useAuth } from '../../context/AuthContext'
+import axiosInstance from '../../utils/axiosInstance'
+import { API_PATHS } from '../../utils/apiPaths'
+import toast from 'react-hot-toast'
+import uploadImage from '../../utils/uploadImage'
+
+import DashboardLayout from '../../components/Layout/DashboardLayout'
 
 const EmployerProfilePage = () => {
+
+  const {user, updateUser} = useAuth();
+
+  const [profileData, setProfileData] = useState({
+    name: user?.name || "",
+    email: user?.email || "",
+    avatar: user?.avatar || "",
+    companyName: user?.companyName || "",
+    companyDescription: user?.companyDescription || "",
+    companyLogo: user?.companyLogo || "",
+  });
+
+  const [editMode, setEditMode] = useState(false);
+  const [formData, setFormData] = useState({...profileData});
+  const [uploading, uploading] = useState({avatar: false, logo: false});
+  const [saving, saving] = useState(false);
+
+  const handleInputChange = (field, value) => {
+    setFormData((prevFormData) => ({ ...prevFormData, [field]: value }));
+  };
+
+  const handleImageChange = (e, type) = {};
+
+  const handleSave = async () => {};
+
+  const handleCancel = () => {
+    setFormData({...profileData});
+    setEditMode(false);
+  };
+
   return (
-    <div>
-      <h1 className="text-4xl font-bold">Employer Profile</h1>
-      <form className="mt-4">
-        <div>
-          <label htmlFor="companyName" className="block text-sm font-medium">
-            Company Name
-          </label>
-          <input
-            type="text"
-            id="companyName"
-            className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-            required
-          />
+    <DashboardLayout activeMenu={"company-profile"}>
+      <div className="">
+        <div className="">
+          <div className="">
+            {/* Header and Avatar */}
+            <div className="">
+              <h1 className="">
+                Employer Profile
+              </h1>
+              <button className="" onClick={() => setEditMode(true)}>
+                <Edit3 className='' />
+                <span className="">Edit Profile</span>
+              </button>
+            </div>
+
+            {/* Profile Content  */}
+            <div className="">
+              <div className="">
+                {/* Personal Information  */}
+                <div className="">
+                  <h2 className="">Personal Information</h2>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="mt-4">
-          <label htmlFor="email" className="block text-sm font-medium">
-            Email
-          </label>
-          <input
-            type="email"
-            id="email"
-            className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-            required
-          />
-        </div>
-        <div className="mt-4">
-          <label htmlFor="phone" className="block text-sm font-medium">
-            Phone
-          </label>
-          <input
-            type="tel"
-            id="phone"
-            className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-            required
-          />
-        </div>
-        <button
-          type="submit"
-          className="mt-4 w-full bg-blue-600 text-white py-2 rounded-md"
-        >
-          Update Profile
-        </button>
-      </form>
-    </div>
+      </div>
+    </DashboardLayout>
   )
 }
 

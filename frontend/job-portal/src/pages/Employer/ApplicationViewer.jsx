@@ -137,6 +137,7 @@ const ApplicationViewer = () => {
                 <div className="flex items-center gap-1">
                   <span>{job.category}</span>
                 </div>
+                
               </div>
             </div>
 
