@@ -31,7 +31,7 @@ const EditProfileDetails = ({
               {/* Avatar */}
               <div className="flex items-center gap-4">
                 <div className="relative">
-                  <img src={formData?.avatar} alt="Avatar" className="w-20 h-20 rounded-full shadow object-cover" />
+                  <img src={formData?.avatar || null} alt="Avatar" className="w-20 h-20 rounded-full shadow object-cover" />
                   {uploading?.avatar && (
                     <div className="absolute inset-0 flex items-center justify-center bg-white/70 rounded-full">
                       <div className="w-5 h-5 border-2 border-blue-500 border-t-transparent animate-spin rounded-full"></div>
@@ -64,7 +64,7 @@ const EditProfileDetails = ({
               {/* Logo */}
               <div className="flex items-center gap-4">
                 <div className="relative">
-                  <img src={formData.companyLogo} alt="Company Logo" className="w-16 h-16 rounded-lg shadow object-cover" />
+                  <img src={formData.companyLogo || null} alt="Company Logo" className="w-16 h-16 rounded-lg shadow object-cover" />
                   {uploading.companyLogo && (
                     <div className="absolute inset-0 flex items-center justify-center bg-white/70 rounded-lg">
                       <div className="w-5 h-5 border-2 border-blue-500 border-t-transparent animate-spin rounded-full"></div>
