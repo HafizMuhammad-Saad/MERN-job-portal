@@ -62,8 +62,8 @@ const JobPostingForm = () => {
       location: formData.location,
       type: formData.jobType,
       category: formData.category,
-      salaryMin: formData.salaryMin,
-      salaryMax: formData.salaryMax,
+      salaryMin: Number(formData.salaryMin),
+      salaryMax: Number(formData.salaryMax),
       description: formData.description,
       requirements: formData.requirements,
     };
@@ -127,11 +127,20 @@ const JobPostingForm = () => {
       errors.category = "Category is required";
     }
 
-    if (!formData.salaryMin || !formData.salaryMax) {
-      errors.salaryMin = "Both minimum and maximum salary is required";
-    } else if (parseInt(formData.salaryMin) > parseInt(formData.salaryMax)) {
-      errors.salaryMin = "Minimum salary should be less than maximum salary";
-    }
+    const minStr = formData.salaryMin;
+const maxStr = formData.salaryMax;
+
+const min = minStr === "" ? null : Number(minStr);
+const max = maxStr === "" ? null : Number(maxStr);
+
+
+    if (min === null || max === null || Number.isNaN(min) || Number.isNaN(max)) {
+  errors.salary = "Both minimum and maximum salary are required";
+} else if (min < 0 || max < 0) {
+  errors.salary = "Salary cannot be negative";
+} else if (min >= max) {
+  errors.salary = "Minimum salary should be less than maximum salary";
+}
 
     if (!formData.description.trim()) {
       errors.description = "Description is required";
@@ -309,6 +318,8 @@ const JobPostingForm = () => {
                       type="number"
                       placeholder="Min"
                       value={formData.salaryMin}
+                      min={0} step="1" inputMode="numeric" 
+                      pattern="[0-9]*"
                       onChange={(e) => handleInputChange("salaryMin", e.target.value)}
                       className="w-full border rounded-lg py-2.5 pl-10 pr-3 text-sm text-gray-900 placeholder-gray-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed"
                     />
@@ -321,6 +332,8 @@ const JobPostingForm = () => {
                     </div>
                     <input
                       type="number"
+                      min={0} step="1" inputMode="numeric" 
+                      pattern="[0-9]*"
                       placeholder="Max"
                       value={formData.salaryMax}
                       onChange={(e) => handleInputChange("salaryMax", e.target.value)}
@@ -328,10 +341,10 @@ const JobPostingForm = () => {
                     />
                   </div>
                 </div>
-                {errors.salary && (
+                {errors.salaryMin && (
                   <div className="mt-1 flex items-center text-xs text-red-500">
                     <AlertCircle className="w-4 h-4 mr-1" />
-                    <span>{errors.salary}</span>
+                    <span>{errors.salaryMin}</span>
                   </div>
                 )}
               </div>
