@@ -33,7 +33,7 @@ const ProfileDropdown = ({
 
     <div className="hidden sm:block text-left">
       <p className="text-sm font-medium text-gray-800">{companyName}</p>
-      <p className="text-xs text-gray-500">Employer</p>
+      <p className="text-xs text-gray-500">{userRole}</p>
     </div>
 
     <ChevronDown className="w-5 h-5 text-gray-500" />

@@ -129,7 +129,7 @@ const JobPostingForm = () => {
 
     if (!formData.salaryMin || !formData.salaryMax) {
       errors.salaryMin = "Both minimum and maximum salary is required";
-    } else if (parseInt(formData.salaryMin) >= parseInt(formData.salaryMax)) {
+    } else if (parseInt(formData.salaryMin) <= parseInt(formData.salaryMax)) {
       errors.salaryMin = "Minimum salary should be less than maximum salary";
     }
 
