@@ -1,5 +1,6 @@
 import { MapPin, Coins, Building2, Clock, Users } from "lucide-react"
 import { useAuth } from "../../context/AuthContext"
+import { useNavigate } from "react-router-dom"
 import { useParams } from "react-router-dom"
 import axiosInstance from "../../utils/axiosInstance"
 import { API_PATHS } from "../../utils/apiPaths"
@@ -10,6 +11,8 @@ import StatusBadge from "../../components/StatusBadge"
 import toast from "react-hot-toast"
 
 const JobDetails = () => {
+
+  const navigate = useNavigate()
   const {user } = useAuth()
   const { jobId } = useParams()
 
@@ -45,7 +48,9 @@ const JobDetails = () => {
     if (jobId && user) {
       getJobDetailsById();
       
-    }
+    } else (
+      navigate('/login')
+    )
   }, [jobId, user]);
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100">
