@@ -38,6 +38,16 @@ This platform connects **Job Seekers** and **Employers** with secure authenticat
 
  Admin dashboard for platform management
 
+📸 Captures
+<img width="1310" height="2491" alt="localhost_5173-Vite+React" src="https://github.com/user-attachments/assets/59890fb3-8a3a-4fe6-89fe-f70d802167f2" />
+<img width="1310" height="1565" alt="localhost_5173-Vite+React (1)" src="https://github.com/user-attachments/assets/bf8de744-0c6b-43ac-b773-6c64a8755d08" />
+<img width="1310" height="1112" alt="localhost_5173-Vite+React (2)" src="https://github.com/user-attachments/assets/4ec1aa1e-8705-42c2-b631-eea6fbee58c9" />
+<img width="1310" height="777" alt="localhost_5173-Vite+React (3)" src="https://github.com/user-attachments/assets/4d399355-372b-4e21-a702-f023a51aa1b8" />
+<img width="1310" height="779" alt="localhost_5173-Vite+React (4)" src="https://github.com/user-attachments/assets/fa57c9c8-1e80-45e4-aba7-c5ddd210fbf9" />
+
+
+
+
 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
