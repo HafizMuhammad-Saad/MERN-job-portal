@@ -7,6 +7,7 @@ const ProfileDropdown = ({
     companyName,
     email,
     onLogout,
+    userRole
 }) => {
 
     const navigate = useNavigate();
