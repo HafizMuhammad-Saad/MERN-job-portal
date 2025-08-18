@@ -16,7 +16,7 @@ const app = express();
 // Middleware to handle CORS
 app.use(cors({
     origin: 'https://mern-job-portal-sigma.vercel.app',
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
@@ -39,4 +39,5 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads"), {}));
 
 //start server
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+module.exports = app;
