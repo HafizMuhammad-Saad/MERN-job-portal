@@ -1,4 +1,4 @@
-export const BASE_URL = "http://localhost:5000";
+export const BASE_URL = "https://mern-job-portal-2lq4-ogk5eadtl-muhammad-saads-projects-4c3d0966.vercel.app/api";
 
 export const API_PATHS = {
   AUTH: {
