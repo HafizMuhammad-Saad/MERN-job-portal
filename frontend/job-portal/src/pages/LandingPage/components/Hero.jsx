@@ -4,6 +4,8 @@ import { motion } from 'framer-motion'
 import { Search, ArrowRight, Users, Building2, TrendingUp } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../../context/AuthContext'
+import SplitText from '../../../../Reactbits/SplitText/SplitText'
+import ShinyText from '../../../../Reactbits/ShinyText/ShinyText'
 
 const Hero = () => {
     const {user, isAuthenticated}  = useAuth()
@@ -19,7 +21,7 @@ const Hero = () => {
     <div className="max-w-7xl mx-auto">
         <div className="space-y-8 text-center">
             {/* Main Heading */}
-            <motion.h1
+            {/* <motion.h1
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
@@ -29,9 +31,23 @@ const Hero = () => {
                 <span className="block text-blue-600">
                     Perfect Hire
                 </span>
-            </motion.h1>
+            </motion.h1> */}
+            <SplitText
+  text={`Find Your Dream Job \n Perfect Hire`}
+  className="text-4xl md:text-5xl font-extrabold text-blue-600 leading-tight"
+  delay={100}
+  duration={0.6}
+  ease="power3.out"
+  splitType="chars"
+  from={{ opacity: 0, y: 40 }}
+  to={{ opacity: 1, y: 0 }}
+  threshold={0.1}
+  rootMargin="-100px"
+  textAlign="center"
+//   onLetterAnimationComplete={handleAnimationComplete}
+/>
 
-            <motion.p
+            {/* <motion.p
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.8 }}
@@ -39,7 +55,10 @@ const Hero = () => {
             >
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam repudiandae nisi eligendi ea eaque facere delectus ab, tenetur excepturi dolores nobis eos odio voluptatibus quas a praesentium dolorem accusamus libero quia voluptatem aspernatur qui repellat, aut magnam. Aut, non ut.
                 <span className="font-semibold text-blue-600"> Perfect Hire</span>
-            </motion.p>
+            </motion.p> */}
+            <ShinyText text="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam repudiandae nisi eligendi ea eaque facere delectus ab, tenetur excepturi dolores nobis eos odio voluptatibus quas a praesentium dolorem accusamus libero quia voluptatem aspernatur qui repellat, aut magnam. Aut, non ut.
+" disabled={false} speed={3} className='max-w-3xl mx-auto text-lg text-zinc-600' />
+
 
             {/* Buttons */}
             <motion.div

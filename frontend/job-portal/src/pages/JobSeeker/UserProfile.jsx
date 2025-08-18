@@ -217,7 +217,7 @@ const UserProfile = () => {
             <input
               type="file"
               onChange={(e) => handleImageChange(e, "resume")}
-              className="hidden"
+              // className="hidden"
             />
           </label>
         </div>

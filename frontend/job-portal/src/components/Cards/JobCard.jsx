@@ -14,7 +14,7 @@ const JobCard = ({
 
     const { user } = useAuth();
 
-    const formatSalary = (min, max) => {
+    const formatSalary = (min) => {
         const formatNumber = (num) => {
             if (num >= 1000) return `PKR ${(num / 1000).toFixed(0)}k`;
             return `PKR ${num}`;

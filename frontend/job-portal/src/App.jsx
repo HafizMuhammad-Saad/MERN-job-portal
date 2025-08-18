@@ -21,10 +21,23 @@ import ApplicationViewer from './pages/Employer/ApplicationViewer';
 import ProtectedRoute from './routes/ProtectedRoute';
 import { AuthProvider } from './context/AuthContext';
 
+// import DotGrid from '../Reactbits/DotGrid/DotGrid';
+import Silk from '../Reactbits/Silk/Silk';
+
 function App() {
 
   return (
     <AuthProvider>
+      <div className="relative min-h-screen light-silk">
+<div className="fixed inset-0 -z-10">
+          <Silk
+  speed={5}
+  scale={1}
+  color="#436B84"
+  noiseIntensity={1.5}
+  rotation={0}
+/>
+        </div>
       <Router>
         <Routes>
           {/* Public Routes */}
@@ -63,6 +76,9 @@ function App() {
           }
         }}
       />
+
+      </div>
+
     </AuthProvider>
   )
 }
