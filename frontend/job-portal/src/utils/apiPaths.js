@@ -1,4 +1,4 @@
-export const BASE_URL = "https://mern-job-portal-2lq4-ogk5eadtl-muhammad-saads-projects-4c3d0966.vercel.app";
+export const BASE_URL = "https://mern-job-portal-backend-99pmpmrse.vercel.app";
 
 export const API_PATHS = {
   AUTH: {
