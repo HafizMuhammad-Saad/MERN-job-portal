@@ -252,7 +252,7 @@ const Login = () => {
        <button
        type='submit'
        disabled={formState.loading}
-       className='w-full bg-gradient-to-r from-purple-500 to-blue-700 hover:from-blue-700 to-purple-900 text-white font-bold py-2 px-4 rounded disabled:opacity-50 transition-all'>
+       className='w-full bg-gradient-to-r from-purple-500 to-blue-700 hover:from-blue-700 hover:to-purple-900 text-white font-bold py-2 px-4 rounded disabled:opacity-50 transition-all'>
         {formState.loading ? (
             <>
             <Loader className='mr-2' />
