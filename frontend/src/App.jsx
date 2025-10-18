@@ -28,7 +28,7 @@ function App() {
 
   return (
     <AuthProvider>
-      <div className="relative min-h-screen light-silk">
+      {/* <div className="relative min-h-screen light-silk">
 <div className="fixed inset-0 -z-10">
           <Silk
   speed={5}
@@ -37,7 +37,7 @@ function App() {
   noiseIntensity={1.5}
   rotation={0}
 />
-        </div>
+        </div> */}
       <Router>
         <Routes>
           {/* Public Routes */}
@@ -77,7 +77,7 @@ function App() {
         }}
       />
 
-      </div>
+      {/* </div> */}
 
     </AuthProvider>
   )
