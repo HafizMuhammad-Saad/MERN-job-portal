@@ -25,7 +25,7 @@ import { AuthProvider } from './context/AuthContext';
 import Silk from '../Reactbits/Silk/Silk';
 
 function App() {
-console.log("✅ BASE_URL =", import.meta.env.VITE_BASE_URL);
+// console.log("✅ BASE_URL =", import.meta.env.VITE_BASE_URL);
 
   return (
     <AuthProvider>

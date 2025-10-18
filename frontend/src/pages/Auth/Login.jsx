@@ -103,11 +103,13 @@ const Login = () => {
 
 
         } catch (error) {
+            console.error("Login error:", error); // helpful for debugging
+
             setFormState(prev => ({
                 ...prev,
                 loading: false,
                 errors: {
-                    submit: error.response.data?.message || 'Login failed. Please check your Connection'
+                    submit: error.response?.data?.message || 'Login failed. Please check your Connection'
                 }
             }))
         }
